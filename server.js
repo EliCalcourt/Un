@@ -16,8 +16,13 @@ server.on('upgrade', (request, socket, head) => {
     }
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-    console.log(`Server running at http://0.0.0.0:${PORT}`);
+server.listen(PORT, '0.0.0.0', (err) => {
+    if (err) {
+        console.error(`Failed to start server on port ${PORT}:`, err);
+        process.exit(1); // Exit the process if the server fails to start
+    } else {
+        console.log(`Server running at http://0.0.0.0:${PORT}`);
+    }
 });
 
 const rooms = {}; // roomCode -> { players: [{id, name, avatar, isHost, ws}], started: false }
