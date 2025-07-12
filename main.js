@@ -36,8 +36,8 @@ let gameStarted = false;
 let lastGameState = null;
 
 function connectWebSocket() {
-    const serverUrl = window.location.origin.replace(/^http/, 'ws'); // Use the correct WebSocket URL
-    ws = new WebSocket(`${serverUrl}/ws`); // Ensure connection to /ws path
+    const serverUrl = 'wss://un-9z6m.onrender.com/ws'; // Update to match the deployed URL
+    ws = new WebSocket(serverUrl); // Ensure connection to /ws path
 
     ws.onopen = () => {
         console.log('WebSocket connection established.');
