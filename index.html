@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uno Knockoff Multiplayer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="root"></div>
+    <!-- React bundle will be injected here by your build tool -->
+    <div class="uno-circle c3"></div>
+    <div class="uno-circle c2"></div>
+    <div class="uno-circle c1"></div>
+    <!-- Confetti squares will be added by JS -->
+    </div>
+    <!-- Lobby / Join Game UI -->
+    <div id="lobby">
+        <h1>UNO Multiplayer</h1>
+        <input id="username" placeholder="Enter your name" />
+        <input id="room" placeholder="Room code" />
+        <input type="file" id="avatarInput" accept="image/*" />
+        <button id="joinBtn">Join Game</button>
+        <button id="createBtn">Create Game</button>
+        <div id="lobby-players">
+            <!-- Player cards will be rendered here -->
+        </div>
+        <div id="lobby-controls"></div>
+    </div>
+
+    <!-- Main Game UI -->
+    <div id="game" style="display:none;">
+        <div id="table">
+            <div id="players-top" class="players-row"></div>
+            <div id="center-table">
+                <div id="discard-pile" class="pile"></div>
+                <div id="draw-pile" class="pile">
+                    <div class="card back"></div>
+                </div>
+                <div id="turn-indicator"></div>
+            </div>
+            <div id="players-bottom" class="players-row"></div>
+        </div>
+        <div id="hand">
+            <!-- Your hand will be rendered here -->
+        </div>
+        <div id="actions">
+            <button id="drawCardBtn">Draw Card</button>
+        </div>
+        <div id="game-info"></div>
+
+        <!-- Chat UI -->
+        <div id="chat">
+            <div id="chatMessages" class="chat-messages">
+                <!-- Chat messages will be rendered here -->
+            </div>
+            <div class="chat-input-container">
+                <input id="chatInput" type="text" placeholder="Type a message..." />
+                <button id="chatSendBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <script>
+    // Add confetti squares in a whirlpool pattern
+    (function() {
+        const bg = document.querySelector('.uno-lobby-bg'); // Ensure this element exists
+        if (!bg) return; // Safeguard against null reference
+        const confettiCount = 18;
+        for (let i = 0; i < confettiCount; ++i) {
+            const angle = (360 / confettiCount) * i + (i % 2 ? 10 : -10);
+            const conf = document.createElement('div');
+            conf.className = 'uno-confetti c' + ((i % 4) + 1);
+            conf.style.top = '50%';
+            conf.style.left = '50%';
+            conf.style.transform = `rotate(${angle}deg) translateX(200px) rotate(${-angle}deg)`;
+            conf.style.animationDelay = (-i * 0.7) + 's';
+            bg.appendChild(conf);
+        }
+    })();
+
+    // Ensure WebSocket client connects to the correct path
+    const serverUrl = window.location.origin.replace(/^http/, 'ws');
+    console.log(`Connecting to WebSocket server at ${serverUrl}`);
+    </script>
+</body>
+</html>
+            conf.style.animationDelay = (-i * 0.7) + 's';
+            bg.appendChild(conf);
+        }
+    })();
+    </script>
+</body>
+</html>
+</html>
+</html>
+</html>

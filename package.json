@@ -1,0 +1,23 @@
+{
+  "name": "un-multiplayer",
+  "version": "1.0.0",
+  "description": "A multiplayer game hosted on Render.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "ws": "^8.13.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "keywords": ["un", "multiplayer", "websocket", "game"],
+  "author": "Eli",
+  "license": "MIT"
+}
