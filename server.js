@@ -1,10 +1,24 @@
 const WebSocket = require('ws');
+const http = require('http');
 const { v4: uuidv4 } = require('uuid');
 
-const PORT = process.env.PORT || 3001; // Use environment variable for port
-const wss = new WebSocket.Server({ port: PORT, host: '0.0.0.0' }); // Bind to 0.0.0.0 for Render hosting
+const PORT = process.env.PORT || 8080; // Ensure the port matches the client's URL
+const wss = new WebSocket.Server({ noServer: true });
 
-console.log(`Uno server running on ws://0.0.0.0:${PORT}`);
+const server = http.createServer();
+server.on('upgrade', (request, socket, head) => {
+    if (request.url === '/ws') { // Handle WebSocket connections at /ws
+        wss.handleUpgrade(request, socket, head, (ws) => {
+            wss.emit('connection', ws, request);
+        });
+    } else {
+        socket.destroy(); // Reject other upgrade requests
+    }
+});
+
+server.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server running at http://0.0.0.0:${PORT}`);
+});
 
 const rooms = {}; // roomCode -> { players: [{id, name, avatar, isHost, ws}], started: false }
 
