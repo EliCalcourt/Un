@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const http = require('http');
 const { v4: uuidv4 } = require('uuid');
 
-const PORT = process.env.PORT || 8080; // Ensure the port matches the client's URL
+const PORT = process.env.PORT || 10000; // Ensure the port matches the client's URL
 const wss = new WebSocket.Server({ noServer: true });
 
 const server = http.createServer();
