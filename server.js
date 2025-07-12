@@ -24,6 +24,10 @@ server.listen(PORT, '0.0.0.0', (err) => {
         console.log(`Server running at http://0.0.0.0:${PORT}`);
     }
 });
+// Debugging log to verify WebSocket server initialization
+wss.on('listening', () => {
+    console.log(`WebSocket server is listening on port ${PORT}`);
+});
 
 const rooms = {}; // roomCode -> { players: [{id, name, avatar, isHost, ws}], started: false }
 
